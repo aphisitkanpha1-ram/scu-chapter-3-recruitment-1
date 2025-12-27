@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Recruitment Result - SCU Chapter 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+/* --- 1. Variables --- */
+:root {
+  --sky-top: #4A90E2;
+  --sky-bottom: #A4D8F9;
+  --bg-gradient: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 60%, #EBF7FF 100%);
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.9);
+  --text-main: #102A43;
+  --text-body: #334E68;
+  --accent-color: #007AFF;
+  --shadow-card: 0 10px 30px rgba(16, 42, 67, 0.15);
+  --city-fill: #FFFFFF;
+  --city-opacity: 0.4;
+}
+
+/* --- 2. Base Styles --- */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Inter', 'Sarabun', sans-serif;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+body::after {
+  content: ''; position: fixed; inset: 0;
+  background: radial-gradient(800px circle at 50vw 50vh, rgba(255, 255, 255, 0.4), transparent 60%);
+  mix-blend-mode: overlay; pointer-events: none; z-index: -1;
+}
+
+.city-bg { position: fixed; bottom: 0; left: 0; width: 100%; height: 40vh; z-index: -1; pointer-events: none; opacity: var(--city-opacity); }
+.city-bg svg { width: 100%; height: 100%; display: block; }
+.city-bg svg path { fill: var(--city-fill); }
+
+/* --- 3. Main Card --- */
+.card-container {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  width: 90%;
+  max-width: 500px;
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: transform 0.3s ease;
+  z-index: 10;
+}
+
+/* Typography & Elements */
+/* ✅ แก้ไข Logo: เอาเงาและกรอบออก */
+.logo { 
+    width: 80px; 
+    margin-bottom: 25px; 
+    /* border-radius และ box-shadow ถูกลบออกแล้ว */
+}
+
+h1 { margin: 0 0 10px; font-size: 2rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
+p.desc { color: var(--text-body); font-size: 1rem; margin-bottom: 35px; line-height: 1.6; }
+
+/* Input */
+.input-group { position: relative; margin-bottom: 25px; }
+input[type="text"] {
+  width: 100%;
+  padding: 18px 25px;
+  font-size: 1.2rem;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50px;
+  outline: none;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  color: var(--text-main);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  transition: all 0.3s;
+}
+input[type="text"]:focus {
+  border-color: var(--accent-color);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Button */
+.btn-primary {
+  background: linear-gradient(135deg, #007AFF 0%, #0056b3 100%);
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0, 122, 255, 0.3);
+  transition: all 0.3s ease;
+  /* เพิ่ม z-index เพื่อให้แน่ใจว่ากดได้ */
+  position: relative;
+  z-index: 20;
+}
+.btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 35px rgba(0, 122, 255, 0.4); }
+.btn-primary:active { transform: scale(0.98); }
+
+/* Result Section */
+#result-area { display: none; animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.congrats-label { 
+    color: var(--accent-color); font-size: 1rem; font-weight: 800; text-transform: uppercase; 
+    letter-spacing: 2px; margin-bottom: 10px; display: inline-block;
+    background: rgba(0, 122, 255, 0.1); padding: 5px 15px; border-radius: 20px;
+}
+.member-name { font-size: 2.2rem; color: var(--text-main); font-weight: 800; margin: 15px 0; line-height: 1.2; }
+.role-text { font-size: 1.2rem; color: var(--text-body); font-weight: 500; margin-bottom: 30px; }
+.error-msg { color: #D32F2F; background: rgba(211, 47, 47, 0.1); padding: 10px; border-radius: 12px; font-size: 0.9rem; margin-top: 15px; display: none; font-weight: 600; }
+
+/* Animations */
+@keyframes popUp { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); } 20%, 40%, 60%, 80% { transform: translateX(6px); } }
+.shake { animation: shake 0.4s; }
+
+footer { position: fixed; bottom: 15px; font-size: 0.8rem; color: var(--text-body); opacity: 0.6; }
+</style>
+</head>
+<body>
+
+    <div class="city-bg">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M0,320 L0,200 L40,200 L40,240 L80,240 L80,120 L100,100 L120,120 L120,260 L160,260 L160,80 L200,80 L200,220 L240,220 L240,150 L280,150 L280,280 L320,280 L320,180 L360,180 L360,250 L400,250 L400,60 L440,60 L440,20 L460,10 L480,20 L480,230 L520,230 L520,140 L560,140 L560,270 L600,270 L600,100 L640,100 L640,200 L680,200 L680,50 L720,50 L720,240 L760,240 L760,160 L800,160 L800,280 L840,280 L840,90 L880,90 L880,220 L920,220 L920,130 L960,130 L960,260 L1000,260 L1000,40 L1040,40 L1040,180 L1080,180 L1080,250 L1120,250 L1120,110 L1160,110 L1160,230 L1200,230 L1200,170 L1240,170 L1240,270 L1280,270 L1280,80 L1320,80 L1320,200 L1360,200 L1360,140 L1400,140 L1400,290 L1440,290 L1440,320 Z"></path></svg>
+    </div>
+
+    <div class="card-container" id="main-card">
+        
+        <div id="search-area">
+            <img src="scu-logo.png" class="logo">
+            
+            <h1>Welcome, Future SCU</h1>
+            <p class="desc">กรอก Secret Code เพื่อตรวจสอบผลการคัดเลือก</p>
+            
+            <div class="input-group">
+                <input type="text" id="secret-code" placeholder="Secret Code" autocomplete="off">
+                <div class="error-msg" id="error-msg">⚠️ รหัสไม่ถูกต้อง กรุณาลองใหม่</div>
+            </div>
+            
+            <button class="btn-primary" onclick="checkCode()">Check Result</button>
+        </div>
+
+        <div id="result-area">
+            <img src="scu-logo.png" class="logo" style="width:60px; margin-bottom:15px;">
+            <div><span class="congrats-label">✨ Congratulations ✨</span></div>
+            <h2 class="member-name" id="display-name">Name Surname</h2>
+            <div class="role-text" id="display-role">Position</div>
+            
+            <p style="color:var(--text-body); font-size:1rem; margin-bottom:25px;">
+                ยินดีต้อนรับสู่ครอบครัว <strong>SCU Chapter 3</strong> ครับ<br>
+            </p>
+            
+            <a href="https://line.me/ti/g2/..." target="_blank" class="btn-primary" style="text-decoration:none; display:inline-block; line-height:1.2;">
+                Go to OpenChat <i class="fas fa-arrow-right" style="font-size:0.9em; margin-left:5px;"></i>
+            </a>
+        </div>
+
+    </div>
+
+    <footer>© 2026 Strategic Connections Unlimited</footer>
+
+<script>
+    /* --- Database รายชื่อ --- */
+    const database = {
+        "SCU001": { name: "N' AOF", role: "Business Development Team" },
+        "SCU002": { name: "Tanapat S.", role: "Creative Team" },
+        "GUEST":  { name: "Special Guest", role: "V.I.P." }
+    };
+
+    /* --- Logic --- */
+    function checkCode() {
+        const input = document.getElementById('secret-code');
+        const errorMsg = document.getElementById('error-msg');
+        const searchArea = document.getElementById('search-area');
+        const resultArea = document.getElementById('result-area');
+        
+        if(!input) return; // Safety check
+        const code = input.value.trim().toUpperCase();
+
+        if (database[code]) {
+            // Found: Update UI
+            document.getElementById('display-name').innerText = database[code].name;
+            document.getElementById('display-role').innerText = database[code].role;
+
+            searchArea.style.display = 'none';
+            resultArea.style.display = 'block';
+
+            // Safe Firework Call (Try-Catch ป้องกันปุ่มค้างถ้าเน็ตมีปัญหา)
+            try {
+                if (typeof confetti === 'function') {
+                    fireFireworks();
+                } else {
+                    console.warn("Confetti library not loaded.");
+                }
+            } catch (e) {
+                console.error("Animation error", e);
+            }
+
+        } else {
+            // Not Found
+            errorMsg.style.display = 'block';
+            document.getElementById('main-card').classList.add('shake');
+            setTimeout(() => document.getElementById('main-card').classList.remove('shake'), 500);
+        }
+    }
+
+    function fireFireworks() {
+        var duration = 3000;
+        var animationEnd = Date.now() + duration;
+        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999 };
+
+        var interval = setInterval(function() {
+            var timeLeft = animationEnd - Date.now();
+            if (timeLeft <= 0) return clearInterval(interval);
+            var particleCount = 50 * (timeLeft / duration);
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#007AFF', '#A4D8F9', '#ffffff'] }));
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#FFD700', '#007AFF', '#ffffff'] }));
+        }, 250);
+    }
+
+    function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+    // Event Listener สำหรับปุ่ม Enter
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputField = document.getElementById("secret-code");
+        if(inputField) {
+            inputField.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault(); // ป้องกันการ reload หน้า
+                    checkCode();
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
