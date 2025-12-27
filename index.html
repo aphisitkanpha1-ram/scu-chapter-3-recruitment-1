@@ -4,9 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Recruitment Result - SCU Chapter 3</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
@@ -38,7 +42,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow-x: hidden; /* ป้องกันการเลื่อนซ้ายขวา */
 }
 
 body::after {
@@ -56,7 +60,7 @@ body::after {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(20px);
-  width: 90%;
+  width: 90%; 
   max-width: 500px;
   border-radius: 24px;
   padding: 3rem 2.5rem;
@@ -65,17 +69,22 @@ body::after {
   position: relative;
   transition: transform 0.3s ease;
   z-index: 10;
+  /* ป้องกัน card ใหญ่เกินจอ */
+  margin: 20px;
 }
 
 /* Typography & Elements */
-/* ✅ แก้ไข Logo: เอาเงาและกรอบออก */
-.logo { 
-    width: 80px; 
-    margin-bottom: 25px; 
-    /* border-radius และ box-shadow ถูกลบออกแล้ว */
+.logo { width: 80px; margin-bottom: 25px; }
+
+h1 { 
+    margin: 0 0 10px; 
+    font-size: 2rem; 
+    font-weight: 800; 
+    color: var(--text-main); 
+    letter-spacing: -0.5px; 
+    line-height: 1.3; /* เพิ่มระยะบรรทัด */
 }
 
-h1 { margin: 0 0 10px; font-size: 2rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
 p.desc { color: var(--text-body); font-size: 1rem; margin-bottom: 35px; line-height: 1.6; }
 
 /* Input */
@@ -115,22 +124,42 @@ input[type="text"]:focus {
   width: 100%;
   box-shadow: 0 10px 25px rgba(0, 122, 255, 0.3);
   transition: all 0.3s ease;
-  /* เพิ่ม z-index เพื่อให้แน่ใจว่ากดได้ */
   position: relative;
   z-index: 20;
+  /* ให้ปุ่ม wrap text ได้ถ้าหน้าจอเล็กมาก */
+  white-space: nowrap; 
 }
 .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 35px rgba(0, 122, 255, 0.4); }
 .btn-primary:active { transform: scale(0.98); }
 
 /* Result Section */
 #result-area { display: none; animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
 .congrats-label { 
     color: var(--accent-color); font-size: 1rem; font-weight: 800; text-transform: uppercase; 
     letter-spacing: 2px; margin-bottom: 10px; display: inline-block;
     background: rgba(0, 122, 255, 0.1); padding: 5px 15px; border-radius: 20px;
 }
-.member-name { font-size: 2.2rem; color: var(--text-main); font-weight: 800; margin: 15px 0; line-height: 1.2; }
-.role-text { font-size: 1.2rem; color: var(--text-body); font-weight: 500; margin-bottom: 30px; }
+
+.member-name { 
+    font-size: 2.2rem; 
+    color: var(--text-main); 
+    font-weight: 800; 
+    margin: 15px 0; 
+    line-height: 1.2;
+    /* ✅ ป้องกันชื่อยาวทะลุจอ */
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+}
+
+.role-text { 
+    font-size: 1.2rem; 
+    color: var(--text-body); 
+    font-weight: 500; 
+    margin-bottom: 30px; 
+    word-wrap: break-word;
+}
+
 .error-msg { color: #D32F2F; background: rgba(211, 47, 47, 0.1); padding: 10px; border-radius: 12px; font-size: 0.9rem; margin-top: 15px; display: none; font-weight: 600; }
 
 /* Animations */
@@ -138,7 +167,23 @@ input[type="text"]:focus {
 @keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); } 20%, 40%, 60%, 80% { transform: translateX(6px); } }
 .shake { animation: shake 0.4s; }
 
-footer { position: fixed; bottom: 15px; font-size: 0.8rem; color: var(--text-body); opacity: 0.6; }
+footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-body); opacity: 0.6; text-align: center; width: 100%; padding: 0 10px; }
+
+/* ✅ Mobile Adjustments (แก้ปัญหาจอ Android เล็ก) */
+@media (max-width: 480px) {
+  .card-container { 
+      padding: 2.5rem 1.5rem; 
+      width: 92%; /* ขยายการ์ดให้กว้างขึ้นอีกนิดในจอมือถือ */
+  }
+  h1 { font-size: 1.6rem; } /* ลดขนาดหัวข้อ */
+  .member-name { font-size: 1.8rem; } /* ลดขนาดชื่อ */
+  .role-text { font-size: 1.1rem; }
+  .btn-primary { 
+      padding: 15px 20px; /* ลด padding ปุ่ม */
+      font-size: 1rem;
+      white-space: normal; /* อนุญาตให้ปุ่มขึ้นบรรทัดใหม่ได้ถ้าจำเป็น */
+  }
+}
 </style>
 </head>
 <body>
@@ -157,7 +202,7 @@ footer { position: fixed; bottom: 15px; font-size: 0.8rem; color: var(--text-bod
             
             <div class="input-group">
                 <input type="text" id="secret-code" placeholder="Secret Code" autocomplete="off">
-                <div class="error-msg" id="error-msg">⚠️ รหัสไม่ถูกต้อง กรุณาลองใหม่</div>
+                <div class="error-msg" id="error-msg">⚠️ Secret Code ไม่ถูกต้อง กรุณาลองใหม่</div>
             </div>
             
             <button class="btn-primary" onclick="checkCode()">Check Result</button>
@@ -173,8 +218,8 @@ footer { position: fixed; bottom: 15px; font-size: 0.8rem; color: var(--text-bod
                 ยินดีต้อนรับสู่ครอบครัว <strong>SCU Chapter 3</strong> ครับ<br>
             </p>
             
-            <a href="https://line.me/ti/g2/..." target="_blank" class="btn-primary" style="text-decoration:none; display:inline-block; line-height:1.2;">
-                Go to OpenChat <i class="fas fa-arrow-right" style="font-size:0.9em; margin-left:5px;"></i>
+            <a href="https://line.me/R/ti/g/kaq6YX88qJ" target="_blank" class="btn-primary" style="text-decoration:none; display:inline-block; line-height:1.2;">
+                Join Line Group <i class="fas fa-arrow-right" style="font-size:0.9em; margin-left:5px;"></i>
             </a>
         </div>
 
@@ -197,18 +242,17 @@ footer { position: fixed; bottom: 15px; font-size: 0.8rem; color: var(--text-bod
         const searchArea = document.getElementById('search-area');
         const resultArea = document.getElementById('result-area');
         
-        if(!input) return; // Safety check
+        if(!input) return;
         const code = input.value.trim().toUpperCase();
 
         if (database[code]) {
-            // Found: Update UI
+            // Found
             document.getElementById('display-name').innerText = database[code].name;
             document.getElementById('display-role').innerText = database[code].role;
 
             searchArea.style.display = 'none';
             resultArea.style.display = 'block';
 
-            // Safe Firework Call (Try-Catch ป้องกันปุ่มค้างถ้าเน็ตมีปัญหา)
             try {
                 if (typeof confetti === 'function') {
                     fireFireworks();
@@ -243,13 +287,12 @@ footer { position: fixed; bottom: 15px; font-size: 0.8rem; color: var(--text-bod
 
     function randomInRange(min, max) { return Math.random() * (max - min) + min; }
 
-    // Event Listener สำหรับปุ่ม Enter
     document.addEventListener('DOMContentLoaded', () => {
         const inputField = document.getElementById("secret-code");
         if(inputField) {
             inputField.addEventListener("keypress", function(event) {
                 if (event.key === "Enter") {
-                    event.preventDefault(); // ป้องกันการ reload หน้า
+                    event.preventDefault();
                     checkCode();
                 }
             });
