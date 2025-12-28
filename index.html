@@ -189,7 +189,6 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
         <div id="result-area">
             <button class="btn-celebrate-small" onclick="fireMegaFireworks()" title="จุดพลุฉลองเลย!">🎉</button>
 
-            <div class="result-header">ประกาศผลการคัดเลือก SCU Chapter 3 Team</div>
             <div class="result-title">ยินดีด้วย! คุณผ่านการคัดเลือก</div>
             <div class="result-date" id="current-date"></div>
 
@@ -353,7 +352,7 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
         var interval = setInterval(function() {
             var timeLeft = animationEnd - Date.now();
             if (timeLeft <= 0) return clearInterval(interval);
-            var particleCount = 350 * (timeLeft / duration);
+            var particleCount = 160 * (timeLeft / duration);
             confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#007AFF', '#A4D8F9', '#FFD700'] }));
             confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#FFD700', '#27AE60', '#ffffff'] }));
             if(Math.random() < 0.4) { confetti({ particleCount: 50, spread: 120, origin: { y: 0.6 }, colors: ['#FF4500', '#FFD700', '#FFFFFF'], scalar: 1.2 }); }
