@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Recruitment Result - SCU Chapter 3</title>
+<title>Volunteer Recruitment Result - SCU Chapter 3</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,12 +19,14 @@
   --sky-top: #4A90E2;
   --sky-bottom: #A4D8F9;
   --bg-gradient: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 60%, #EBF7FF 100%);
-  --glass-bg: rgba(255, 255, 255, 0.65);
-  --glass-border: rgba(255, 255, 255, 0.9);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.95);
   --text-main: #102A43;
-  --text-body: #334E68;
+  --text-body: #486581;
   --accent-color: #007AFF;
-  --shadow-card: 0 10px 30px rgba(16, 42, 67, 0.15);
+  --accent-light: rgba(0, 122, 255, 0.1);
+  --success-color: #27AE60;
+  --shadow-card: 0 20px 50px rgba(16, 42, 67, 0.25);
   --city-fill: #FFFFFF;
   --city-opacity: 0.4;
 }
@@ -42,7 +44,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-x: hidden; /* ป้องกันการเลื่อนซ้ายขวา */
+  overflow-x: hidden;
 }
 
 body::after {
@@ -59,130 +61,117 @@ body::after {
 .card-container {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(25px);
   width: 90%; 
   max-width: 500px;
-  border-radius: 24px;
-  padding: 3rem 2.5rem;
+  border-radius: 30px;
+  padding: 3.5rem 2.5rem;
   text-align: center;
   box-shadow: var(--shadow-card);
   position: relative;
   transition: transform 0.3s ease;
   z-index: 10;
-  /* ป้องกัน card ใหญ่เกินจอ */
   margin: 20px;
 }
 
 /* Typography & Elements */
-.logo { width: 80px; margin-bottom: 25px; }
+.logo { width: 90px; margin-bottom: 20px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
 
-h1 { 
-    margin: 0 0 10px; 
-    font-size: 2rem; 
-    font-weight: 800; 
-    color: var(--text-main); 
-    letter-spacing: -0.5px; 
-    line-height: 1.3; /* เพิ่มระยะบรรทัด */
-}
-
-p.desc { color: var(--text-body); font-size: 1rem; margin-bottom: 35px; line-height: 1.6; }
+h1 { margin: 0 0 10px; font-size: 2rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; line-height: 1.2; }
+p.desc { color: var(--text-body); font-size: 1rem; margin-bottom: 40px; line-height: 1.6; }
 
 /* Input */
 .input-group { position: relative; margin-bottom: 25px; }
 input[type="text"] {
-  width: 100%;
-  padding: 18px 25px;
-  font-size: 1.2rem;
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50px;
-  outline: none;
-  text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  color: var(--text-main);
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
-  transition: all 0.3s;
+  width: 100%; padding: 20px 25px; font-size: 1.2rem;
+  border: 2px solid #FFFFFF; background: #F0F4F8;
+  border-radius: 16px; outline: none; text-align: center;
+  font-family: 'Inter', sans-serif; font-weight: 600; color: var(--text-main);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.06); transition: all 0.3s;
 }
 input[type="text"]:focus {
-  border-color: var(--accent-color);
-  background: #fff;
-  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.15);
-  transform: translateY(-2px);
+  background: #FFFFFF; border-color: var(--accent-color);
+  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.15); transform: translateY(-2px);
 }
 
-/* Button */
+/* Button Main */
 .btn-primary {
-  background: linear-gradient(135deg, #007AFF 0%, #0056b3 100%);
-  color: white;
-  border: none;
-  padding: 18px 40px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  border-radius: 50px;
-  cursor: pointer;
-  width: 100%;
-  box-shadow: 0 10px 25px rgba(0, 122, 255, 0.3);
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 20;
-  /* ให้ปุ่ม wrap text ได้ถ้าหน้าจอเล็กมาก */
-  white-space: nowrap; 
+  background: linear-gradient(135deg, #007AFF 0%, #0062CC 100%);
+  color: white; border: none; padding: 18px 30px; font-size: 1.1rem; font-weight: 700;
+  border-radius: 50px; cursor: pointer; width: 100%; position: relative; z-index: 20; white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0, 122, 255, 0.25); transition: all 0.3s ease;
 }
-.btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 35px rgba(0, 122, 255, 0.4); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0, 122, 255, 0.35); }
 .btn-primary:active { transform: scale(0.98); }
 
-/* Result Section */
-#result-area { display: none; animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+/* Button Celebrate Small */
+.btn-celebrate-small {
+  position: absolute; top: 20px; right: 20px; width: 45px; height: 45px;
+  border-radius: 50%; background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 122, 255, 0.2); font-size: 1.4rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s ease; z-index: 50; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.btn-celebrate-small:hover {
+  transform: scale(1.15) rotate(15deg); background: #FFFFFF;
+  box-shadow: 0 5px 15px rgba(0, 122, 255, 0.2);
+}
+.btn-celebrate-small:active { transform: scale(0.9); }
+
+/* --- 4. Result Styling --- */
+#result-area, #final-area { display: none; animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
 .congrats-label { 
-    color: var(--accent-color); font-size: 1rem; font-weight: 800; text-transform: uppercase; 
-    letter-spacing: 2px; margin-bottom: 10px; display: inline-block;
-    background: rgba(0, 122, 255, 0.1); padding: 5px 15px; border-radius: 20px;
+    color: var(--accent-color); font-size: 0.9rem; font-weight: 800; text-transform: uppercase; 
+    letter-spacing: 2px; margin-bottom: 15px; display: inline-block;
+    background: var(--accent-light); padding: 8px 18px; border-radius: 30px;
 }
 
 .member-name { 
-    font-size: 2.2rem; 
-    color: var(--text-main); 
-    font-weight: 800; 
-    margin: 15px 0; 
-    line-height: 1.2;
-    /* ✅ ป้องกันชื่อยาวทะลุจอ */
-    word-wrap: break-word; 
-    overflow-wrap: break-word; 
+    font-size: 2.6rem; color: var(--text-main); font-weight: 800; margin: 0 0 15px 0; 
+    line-height: 1.1; letter-spacing: -1px; word-wrap: break-word; 
 }
 
-.role-text { 
-    font-size: 1.2rem; 
-    color: var(--text-body); 
-    font-weight: 500; 
-    margin-bottom: 30px; 
-    word-wrap: break-word;
+/* Role Layout */
+.role-container {
+    background: #FFFFFF; border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 16px; padding: 20px; margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
 
-.error-msg { color: #D32F2F; background: rgba(211, 47, 47, 0.1); padding: 10px; border-radius: 12px; font-size: 0.9rem; margin-top: 15px; display: none; font-weight: 600; }
+.badge-team {
+    display: inline-block; color: #627D98; font-size: 0.8rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: 8px; border-bottom: 2px solid #D9E2EC; padding-bottom: 4px;
+}
 
-/* Animations */
-@keyframes popUp { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+.text-position {
+    font-size: 1.4rem; color: var(--accent-color); font-weight: 700;
+    line-height: 1.4; margin-top: 5px;
+}
+
+/* --- Final Area Styles --- */
+.success-icon { font-size: 3.5rem; color: var(--success-color); margin-bottom: 20px; animation: popUp 0.8s ease; }
+.info-box {
+    background: var(--accent-light); border: 1px solid rgba(0, 122, 255, 0.1);
+    border-radius: 16px; padding: 20px; margin-bottom: 25px;
+}
+.error-msg { color: #D32F2F; background: #FFEBEB; padding: 12px; border-radius: 12px; font-size: 0.9rem; margin-top: 15px; display: none; font-weight: 600; border: 1px solid #FFCDCD; }
+
+@keyframes popUp { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 @keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); } 20%, 40%, 60%, 80% { transform: translateX(6px); } }
 .shake { animation: shake 0.4s; }
 
-footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-body); opacity: 0.6; text-align: center; width: 100%; padding: 0 10px; }
+footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-body); opacity: 0.8; text-align: center; width: 100%; padding: 0 10px; font-weight: 500; }
 
-/* ✅ Mobile Adjustments (แก้ปัญหาจอ Android เล็ก) */
 @media (max-width: 480px) {
-  .card-container { 
-      padding: 2.5rem 1.5rem; 
-      width: 92%; /* ขยายการ์ดให้กว้างขึ้นอีกนิดในจอมือถือ */
-  }
-  h1 { font-size: 1.6rem; } /* ลดขนาดหัวข้อ */
-  .member-name { font-size: 1.8rem; } /* ลดขนาดชื่อ */
-  .role-text { font-size: 1.1rem; }
-  .btn-primary { 
-      padding: 15px 20px; /* ลด padding ปุ่ม */
-      font-size: 1rem;
-      white-space: normal; /* อนุญาตให้ปุ่มขึ้นบรรทัดใหม่ได้ถ้าจำเป็น */
-  }
+  .card-container { padding: 2.5rem 1.5rem; width: 92%; }
+  h1 { font-size: 1.8rem; }
+  .member-name { font-size: 2.2rem; }
+  .text-position { font-size: 1.25rem; }
+  .btn-primary { padding: 16px 20px; font-size: 1rem; white-space: normal; }
+  .role-container { padding: 15px; }
+  .btn-celebrate-small { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 1.2rem; }
 }
 </style>
 </head>
@@ -196,31 +185,55 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
         
         <div id="search-area">
             <img src="scu-logo.png" class="logo">
-            
             <h1>Welcome, Future SCU</h1>
             <p class="desc">กรอก Secret Code เพื่อตรวจสอบผลการคัดเลือก</p>
-            
             <div class="input-group">
                 <input type="text" id="secret-code" placeholder="Secret Code" autocomplete="off">
                 <div class="error-msg" id="error-msg">⚠️ Secret Code ไม่ถูกต้อง กรุณาลองใหม่</div>
             </div>
-            
             <button class="btn-primary" onclick="checkCode()">Check Result</button>
         </div>
 
         <div id="result-area">
+            <button class="btn-celebrate-small" onclick="fireMegaFireworks()" title="จุดพลุฉลองเลย!">
+                🎉
+            </button>
+
             <img src="scu-logo.png" class="logo" style="width:60px; margin-bottom:15px;">
             <div><span class="congrats-label">✨ Congratulations ✨</span></div>
-            <h2 class="member-name" id="display-name">Name Surname</h2>
-            <div class="role-text" id="display-role">Position</div>
             
+            <h2 class="member-name" id="display-name">Name Surname</h2>
+            
+            <div class="role-container">
+                <span class="badge-team" id="display-team">TEAM NAME</span>
+                <div class="text-position" id="display-position">Position Name</div>
+            </div>
+
             <p style="color:var(--text-body); font-size:1rem; margin-bottom:25px;">
-                ยินดีต้อนรับสู่ครอบครัว <strong>SCU Chapter 3</strong> ครับ<br>
+                ยินดีต้อนรับสู่ <strong>SCU Chapter 3</strong> ครับ<br>
+                กรุณากดยืนยันสิทธิ์เพื่อดำเนินการต่อ
             </p>
             
-            <a href="https://line.me/R/ti/g/kaq6YX88qJ" target="_blank" class="btn-primary" style="text-decoration:none; display:inline-block; line-height:1.2;">
-                Join Line Group <i class="fas fa-arrow-right" style="font-size:0.9em; margin-left:5px;"></i>
-            </a>
+            <button class="btn-primary" onclick="confirmRights()">
+                ยืนยันสิทธิ์ (Confirm Rights) <i class="fas fa-check-circle" style="font-size:0.9em; margin-left:5px;"></i>
+            </button>
+        </div>
+
+        <div id="final-area">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h2 style="color:var(--text-main); font-size:1.8rem; margin-bottom:10px;">ยืนยันสิทธิ์เรียบร้อย</h2>
+            <p style="color:var(--text-body); margin-bottom:20px;">
+                ระบบได้บันทึกสถานะของคุณแล้ว<br>ขอบคุณที่เป็นส่วนหนึ่งกับเรา
+            </p>
+            
+            <div class="info-box">
+                <strong style="color:var(--accent-color); display:block; margin-bottom:8px;">📅 ขั้นตอนถัดไป</strong>
+                <p style="font-size:0.95rem; margin:0; color:var(--text-body); line-height:1.5;">
+                    โปรดรอรับ <strong>ลิงก์เข้ากลุ่ม Line Official</strong><br>
+                    ผ่านทางอีเมลในช่วง <strong>ต้นเดือนมกราคม</strong>
+                </p>
+            </div>
+            <p style="font-size:0.85rem; color:#888;">ปิดหน้านี้ได้เลยครับ</p>
         </div>
 
     </div>
@@ -228,11 +241,23 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
     <footer>© 2026 Strategic Connections Unlimited</footer>
 
 <script>
-    /* --- Database รายชื่อ --- */
+    /* --- Database --- */
     const database = {
-        "SCU001": { name: "N' AOF", role: "Business Development Team" },
-        "SCU002": { name: "Tanapat S.", role: "Creative Team" },
-        "GUEST":  { name: "Special Guest", role: "V.I.P." }
+        "SCU001": { 
+            name: "N' AOF", 
+            team: "Business Development Team",
+            position: "Sponsor & Partner Relations" 
+        },
+        "SCU002": { 
+            name: "Tanapat S.", 
+            team: "Creative Team",
+            position: "Graphic Designer"
+        },
+        "GUEST": { 
+            name: "Special Guest", 
+            team: "Management",
+            position: "V.I.P. Advisor" 
+        }
     };
 
     /* --- Logic --- */
@@ -246,43 +271,60 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
         const code = input.value.trim().toUpperCase();
 
         if (database[code]) {
-            // Found
             document.getElementById('display-name').innerText = database[code].name;
-            document.getElementById('display-role').innerText = database[code].role;
+            document.getElementById('display-team').innerText = database[code].team;
+            document.getElementById('display-position').innerText = database[code].position;
 
             searchArea.style.display = 'none';
             resultArea.style.display = 'block';
 
-            try {
-                if (typeof confetti === 'function') {
-                    fireFireworks();
-                } else {
-                    console.warn("Confetti library not loaded.");
-                }
-            } catch (e) {
-                console.error("Animation error", e);
-            }
+            // 🔥 เปิดหน้ามาก็ยิงมหาพลุเลย
+            fireMegaFireworks();
 
         } else {
-            // Not Found
             errorMsg.style.display = 'block';
             document.getElementById('main-card').classList.add('shake');
             setTimeout(() => document.getElementById('main-card').classList.remove('shake'), 500);
         }
     }
 
-    function fireFireworks() {
-        var duration = 3000;
+    function confirmRights() {
+        document.getElementById('result-area').style.display = 'none';
+        document.getElementById('final-area').style.display = 'block';
+        fireNormalFireworks();
+    }
+
+    // 🚀 ฟังก์ชัน "มหาพลุ" (MEGA FIREWORKS)
+    function fireMegaFireworks() {
+        var duration = 7000; // ยิงยาว 7 วินาที
         var animationEnd = Date.now() + duration;
-        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999 };
+        var defaults = { startVelocity: 40, spread: 360, ticks: 100, zIndex: 999 };
 
         var interval = setInterval(function() {
             var timeLeft = animationEnd - Date.now();
             if (timeLeft <= 0) return clearInterval(interval);
-            var particleCount = 50 * (timeLeft / duration);
-            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#007AFF', '#A4D8F9', '#ffffff'] }));
-            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#FFD700', '#007AFF', '#ffffff'] }));
-        }, 250);
+
+            var particleCount = 900 * (timeLeft / duration);
+            
+            // 1. ยิงจากซ้ายและขวา
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#007AFF', '#A4D8F9', '#FFD700'] }));
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#FFD700', '#27AE60', '#ffffff'] }));
+            
+            // 2. ยิงจากตรงกลาง (Center Burst)
+            if(Math.random() < 0.4) {
+                 confetti({ 
+                     particleCount: 50, 
+                     spread: 120, 
+                     origin: { y: 0.6 },
+                     colors: ['#FF4500', '#FFD700', '#FFFFFF'], // สีทอง แดง ขาว (พรีเมียม)
+                     scalar: 1.2 // เม็ดใหญ่ขึ้น
+                 });
+            }
+        }, 150); // ยิงถี่มากๆ (ทุก 150ms)
+    }
+
+    function fireNormalFireworks() {
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     }
 
     function randomInRange(min, max) { return Math.random() * (max - min) + min; }
