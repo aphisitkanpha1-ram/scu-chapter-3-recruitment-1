@@ -61,7 +61,7 @@ body::after {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(25px);
-  width: 95%; 
+  width: 95% ; 
   max-width: 550px;
   border-radius: 24px;
   padding: 2.5rem 2rem;
@@ -74,7 +74,7 @@ body::after {
 }
 
 /* Typography & Elements */
-.logo-main { width: 90px; margin-bottom: 20px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+.logo-main { width: 90px; margin-bottom: 20px; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1)); }
 h1 { margin: 0 0 10px; font-size: 2rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; line-height: 1.2; }
 p.desc { color: var(--text-body); font-size: 1rem; margin-bottom: 40px; line-height: 1.6; }
 
@@ -85,7 +85,7 @@ input[type="text"] {
   border: 2px solid #FFFFFF; background: #F0F4F8;
   border-radius: 16px; outline: none; text-align: center;
   font-family: 'Inter', sans-serif; font-weight: 600; color: var(--text-main);
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.06); transition: all 0.3s;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06); transition: all 0.3s;
 }
 input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color); }
 
@@ -106,19 +106,17 @@ input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color
   border-radius: 50%; background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(0, 122, 255, 0.2); font-size: 1.2rem;
   cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all 0.3s ease; z-index: 50; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: all 0.3s ease; z-index: 50; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 .btn-celebrate-small:hover { transform: scale(1.15) rotate(15deg); background: #FFFFFF; }
 
 /* --- 4. Result Styling --- */
 #result-area, #final-area { display: none; animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
-/* Header */
 .result-header { color: var(--text-body); font-size: 1.1rem; font-weight: 600; margin-bottom: 5px; }
 .result-title { color: var(--accent-color); font-size: 1.8rem; font-weight: 800; margin-bottom: 15px; }
 .result-date { color: var(--text-body); font-size: 0.95rem; margin-bottom: 20px; font-weight: 500; }
 
-/* Countdown */
 .deadline-text { color: var(--danger-color); font-weight: 700; margin-bottom: 10px; }
 .countdown-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
 .time-box {
@@ -127,11 +125,10 @@ input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color
 }
 .time-label { display: block; font-size: 0.7rem; font-weight: 400; margin-top: 4px; }
 
-/* Official Result Box */
 .official-result-box {
     background: #FFFFFF; border: 2px solid var(--accent-color);
     border-radius: 16px; overflow: hidden; text-align: left;
-    margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 .box-header { background: var(--accent-color); color: white; padding: 12px 20px; font-weight: 700; font-size: 1.1rem; }
 .box-content { padding: 20px; position: relative; min-height: 140px; }
@@ -143,7 +140,6 @@ input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color
 .warning-text { color: var(--text-body); font-size: 0.9rem; margin-bottom: 25px; line-height: 1.5; }
 .highlight-warn { color: var(--danger-color); font-weight: 700; }
 
-/* Final Area */
 .success-icon { font-size: 3.5rem; color: var(--success-color); margin-bottom: 20px; animation: popUp 0.8s ease; }
 .info-box { background: rgba(0, 122, 255, 0.1); border: 1px solid rgba(0, 122, 255, 0.2); border-radius: 16px; padding: 20px; margin-bottom: 25px; }
 .error-msg { color: var(--danger-color); background: #FFEBEB; padding: 12px; border-radius: 12px; font-size: 0.9rem; margin-top: 15px; display: none; font-weight: 600; border: 1px solid #FFCDCD; }
@@ -154,13 +150,20 @@ input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color
 
 footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-body); opacity: 0.8; text-align: center; width: 100%; padding: 0 10px; font-weight: 500; }
 
+/* ✅ Mobile Adjustments (Smaller for Android) */
 @media (max-width: 480px) {
-  .card-container { padding: 2rem 1.5rem; width: 92%; }
-  h1 { font-size: 1.8rem; }
-  .result-title { font-size: 1.5rem; }
-  .box-content { padding: 15px; }
-  .university-logo { width: 50px; top: 15px; right: 15px; }
-  .detail-value { font-size: 1rem; }
+  .card-container { padding : 1.5rem 1rem ; width : 92% ; margin : 10px 0 ; }
+  h1 { font-size : 1.5rem ; }
+  p.desc { font-size : 0.9rem ; margin-bottom : 25px ; }
+  .result-title { font-size : 1.35rem ; }
+  .result-header { font-size : 0.95rem ; }
+  .time-box { min-width : 45px ; padding : 6px 8px ; font-size : 1rem ; }
+  .box-content { padding : 15px ; min-height : 120px ; }
+  .university-logo { width : 50px ; top : 15px ; right : 15px ; }
+  .detail-label { font-size : 0.85rem ; }
+  .detail-value { font-size : 0.95rem ; }
+  .member-name { font-size : 2rem ; }
+  .btn-primary { padding : 14px 20px ; font-size : 1rem ; }
 }
 </style>
 </head>
@@ -174,8 +177,8 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
         
         <div id="search-area">
             <img src="scu-logo.png" class="logo-main">
-            <h1>Welcome, Future SCU</h1>
-            <p class="desc">กรอก Secret Code เพื่อตรวจสอบผลการคัดเลือก</p>
+            <h1>Welcome to SCU Chapter 3 Team</h1>
+            <p class="desc">กรุณากรอก Secret Code เพื่อตรวจสอบผลการคัดเลือกอาสาสมัคร</p>
             <div class="input-group">
                 <input type="text" id="secret-code" placeholder="Secret Code" autocomplete="off">
                 <div class="error-msg" id="error-msg">⚠️ Secret Code ไม่ถูกต้อง กรุณาลองใหม่</div>
@@ -186,11 +189,11 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
         <div id="result-area">
             <button class="btn-celebrate-small" onclick="fireMegaFireworks()" title="จุดพลุฉลองเลย!">🎉</button>
 
-            <div class="result-header">ประกาศผลการคัดเลือก SCU Chapter 3</div>
+            <div class="result-header">ประกาศผลการคัดเลือก SCU Chapter 3 Team</div>
             <div class="result-title">ยินดีด้วย! คุณผ่านการคัดเลือก</div>
             <div class="result-date" id="current-date"></div>
 
-            <div class="deadline-text">กรุณายืนยันสิทธิ์ภายใน (30 ธ.ค. 68 เวลา 19:00 น.)</div>
+            <div class="deadline-text">กรุณายืนยันสิทธิ์ภายใน (30 ธ.ค. 68 เวลา 19:30 น.)</div>
             
             <div class="countdown-container">
                 <div class="time-box"><span id="hours">--</span><span class="time-label">ชั่วโมง</span></div>
@@ -199,12 +202,12 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
             </div>
 
             <div class="official-result-box">
-                <div class="box-header">สถานะ: ผ่านการคัดเลือก (Selected)</div>
+                <div class="box-header">สถานะ : ผ่านการคัดเลือก (Selected)</div>
                 <div class="box-content">
                     <img src="scu-logo.png" class="university-logo">
                     
                     <div class="detail-row">
-                        <span class="detail-label">ชื่อ-นามสกุล</span>
+                        <span class="detail-label">ชื่อ (Name)</span>
                         <span class="detail-value" id="display-name">Name Surname</span>
                     </div>
                     <div class="detail-row">
@@ -238,7 +241,7 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
             <div class="info-box">
                 <strong style="color:var(--accent-color); display:block; margin-bottom:8px;">📅 ขั้นตอนถัดไป</strong>
                 <p style="font-size:0.95rem; margin:0; color:var(--text-body); line-height:1.5;">
-                    โปรดรอรับ <strong>ลิงก์เข้ากลุ่ม LINE Official</strong><br>
+                    โปรดรอรับ <strong>ลิงก์เข้ากลุ่ม LINE</strong><br>
                     ผ่านทางอีเมลในช่วง <strong>ต้นเดือนมกราคม</strong>
                 </p>
             </div>
@@ -251,7 +254,7 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
 
 <script>
     // ----------------------------------------------------
-    // 1. ตั้งค่าการส่งข้อมูล (แก้ไขลิงก์ให้ถูกต้องแล้ว)
+    // 1. ตั้งค่าการส่งข้อมูล (Google Form)
     // ----------------------------------------------------
     const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdogQOyZkyWFbtkJ5NZ-EgJJUF2t2VvtLoBH2x2d_cPbLYZDw/formResponse"; 
     const ENTRY_NAME = "entry.190044036"; 
@@ -260,13 +263,13 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
     // ----------------------------------------------------
     // 2. ตั้งค่าวันหมดเวลา
     // ----------------------------------------------------
-    // สิ้นสุด: 30 ธ.ค. 2025 เวลา 19:00:00 (ระยะเวลา 48 ชม.)
-    const TARGET_DATE = new Date("2025-12-30T19:00:00").getTime(); 
+    // สิ้นสุด : 30 ธ.ค. 2025 เวลา 19 : 30 : 00
+    const TARGET_DATE = new Date("2025-12-30T19:30:00").getTime(); 
 
     // Database
     const database = {
         "SCU001": { name: "N' AOF", team: "Business Development Team", position: "Sponsor & Partner Relations" },
-        "SCU002": { name: "Tanapat S.", team: "Creative Team", position: "Graphic Designer" },
+        "SCU002": { name: "🫵", team: "ทำไรครับ", position: "🫵" },
         "GUEST": { name: "Special Guest", team: "Management", position: "V.I.P. Advisor" }
     };
 
@@ -282,7 +285,6 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
             document.getElementById('display-team').innerText = database[code].team;
             document.getElementById('display-position').innerText = database[code].position;
             
-            // Show Current Date
             const now = new Date();
             document.getElementById('current-date').innerText = now.toLocaleDateString('th-TH', { year: '2-digit', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' }) + " น.";
 
@@ -299,23 +301,23 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
     }
 
     function confirmRights() {
-        // 1. ส่งข้อมูลไป Google Sheets
-        const name = document.getElementById('display-name').innerText;
-        const code = document.getElementById('secret-code').value.trim().toUpperCase();
+        const name = document.getElementById('display-name').innerText ;
+        const code = document.getElementById('secret-code').value.trim().toUpperCase() ;
 
-        const formData = new FormData();
-        formData.append(ENTRY_NAME, name);
-        formData.append(ENTRY_CODE, code);
+        // ใช้ URLSearchParams เพื่อความเสถียรสูงสุดบน Android
+        const params = new URLSearchParams() ;
+        params.append(ENTRY_NAME, name) ;
+        params.append(ENTRY_CODE, code) ;
         
         fetch(GOOGLE_FORM_URL, {
             method: "POST",
             mode: "no-cors", 
-            body: formData
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: params.toString()
         }).then(() => {
-            console.log("Data sent");
-        }).catch(e => console.error("Error sending data", e));
+            console.log("Data submission triggered");
+        }).catch(e => console.error("Submission Error :", e));
 
-        // 2. เปลี่ยนหน้า
         document.getElementById('result-area').style.display = 'none';
         document.getElementById('final-area').style.display = 'block';
         fireNormalFireworks();
@@ -334,7 +336,7 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
                 return;
             }
 
-            // คำนวณชั่วโมงแบบไม่ตัดเศษวัน (แสดง 48 ชม.)
+            // แสดงชั่วโมงรวมทั้งหมด (เช่น 48 ชั่วโมง)
             const hours = Math.floor(distance / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -351,14 +353,16 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
         var interval = setInterval(function() {
             var timeLeft = animationEnd - Date.now();
             if (timeLeft <= 0) return clearInterval(interval);
-            var particleCount = 150 * (timeLeft / duration);
+            var particleCount = 350 * (timeLeft / duration);
             confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#007AFF', '#A4D8F9', '#FFD700'] }));
             confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#FFD700', '#27AE60', '#ffffff'] }));
             if(Math.random() < 0.4) { confetti({ particleCount: 50, spread: 120, origin: { y: 0.6 }, colors: ['#FF4500', '#FFD700', '#FFFFFF'], scalar: 1.2 }); }
         }, 150);
     }
+
     function fireNormalFireworks() { confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); }
     function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+    
     document.addEventListener('DOMContentLoaded', () => {
         const inputField = document.getElementById("secret-code");
         if(inputField) {
