@@ -19,11 +19,11 @@
   --sky-top: #4A90E2;
   --sky-bottom: #A4D8F9;
   --bg-gradient: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 60%, #EBF7FF 100%);
-  --glass-bg: rgba(255, 255, 255, 0.9); /* เพิ่มความทึบให้ดูเป็นทางการ */
+  --glass-bg: rgba(255, 255, 255, 0.95);
   --glass-border: rgba(255, 255, 255, 0.95);
   --text-main: #102A43;
   --text-body: #486581;
-  --accent-color: #007AFF; /* สีฟ้าหลัก */
+  --accent-color: #007AFF;
   --accent-dark: #0056b3;
   --success-color: #27AE60;
   --danger-color: #D32F2F;
@@ -44,7 +44,7 @@ body {
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
-  padding-bottom: 50px; /* เผื่อพื้นที่ footer */
+  padding-bottom: 50px;
 }
 
 body::after {
@@ -62,7 +62,7 @@ body::after {
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(25px);
   width: 95%; 
-  max-width: 550px; /* ขยายให้กว้างขึ้นเล็กน้อย */
+  max-width: 550px;
   border-radius: 24px;
   padding: 2.5rem 2rem;
   text-align: center;
@@ -73,7 +73,7 @@ body::after {
   margin: 20px 0;
 }
 
-/* --- Typography & Elements (General) --- */
+/* Typography & Elements */
 .logo-main { width: 90px; margin-bottom: 20px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
 h1 { margin: 0 0 10px; font-size: 2rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; line-height: 1.2; }
 p.desc { color: var(--text-body); font-size: 1rem; margin-bottom: 40px; line-height: 1.6; }
@@ -95,7 +95,7 @@ input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color
   color: white; border: none; padding: 16px 30px; font-size: 1.1rem; font-weight: 700;
   border-radius: 50px; cursor: pointer; width: 100%; position: relative; z-index: 20; white-space: nowrap;
   box-shadow: 0 8px 20px rgba(0, 122, 255, 0.25); transition: all 0.3s ease;
-  display: flex; align-items: center; justify-content: center; gap: 10px; /* จัดไอคอนกับข้อความ */
+  display: flex; align-items: center; justify-content: center; gap: 10px;
 }
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0, 122, 255, 0.35); }
 .btn-primary:active { transform: scale(0.98); }
@@ -110,73 +110,40 @@ input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color
 }
 .btn-celebrate-small:hover { transform: scale(1.15) rotate(15deg); background: #FFFFFF; }
 
-/* --- 4. Result Styling (Admission Style) --- */
+/* --- 4. Result Styling --- */
 #result-area, #final-area { display: none; animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
-/* Header Section */
+/* Header */
 .result-header { color: var(--text-body); font-size: 1.1rem; font-weight: 600; margin-bottom: 5px; }
 .result-title { color: var(--accent-color); font-size: 1.8rem; font-weight: 800; margin-bottom: 15px; }
 .result-date { color: var(--text-body); font-size: 0.95rem; margin-bottom: 20px; font-weight: 500; }
 
-/* Countdown Timer */
-.countdown-container {
-    display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;
-}
+/* Countdown */
+.deadline-text { color: var(--danger-color); font-weight: 700; margin-bottom: 10px; }
+.countdown-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
 .time-box {
     background: var(--accent-color); color: white;
-    padding: 8px 12px; border-radius: 8px; font-weight: 700; font-size: 1.2rem;
-    min-width: 50px;
+    padding: 8px 12px; border-radius: 8px; font-weight: 700; font-size: 1.2rem; min-width: 50px;
 }
 .time-label { display: block; font-size: 0.7rem; font-weight: 400; margin-top: 4px; }
-.deadline-text { color: var(--danger-color); font-weight: 700; margin-bottom: 10px; }
 
-/* Hearts Section */
-.hearts-container { margin-bottom: 10px; color: var(--danger-color); font-size: 1.5rem; }
-.heart-text { color: var(--text-body); font-size: 0.9rem; margin-bottom: 30px; }
-
-/* ✅ Official Result Box (กล่องประกาศผล) */
+/* Official Result Box */
 .official-result-box {
-    background: #FFFFFF;
-    border: 2px solid var(--accent-color);
-    border-radius: 16px;
-    overflow: hidden; /* เพื่อให้หัวข้อสีฟ้าไม่ล้นมุม */
-    text-align: left;
-    margin-bottom: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    background: #FFFFFF; border: 2px solid var(--accent-color);
+    border-radius: 16px; overflow: hidden; text-align: left;
+    margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
-
-.box-header {
-    background: var(--accent-color);
-    color: white;
-    padding: 12px 20px;
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-
-.box-content {
-    padding: 20px;
-    position: relative; /* สำหรับวางโลโก้แบบ absolute */
-    min-height: 180px; /* ความสูงขั้นต่ำ */
-}
-
-.university-logo {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 60px;
-    opacity: 0.8;
-}
-
+.box-header { background: var(--accent-color); color: white; padding: 12px 20px; font-weight: 700; font-size: 1.1rem; }
+.box-content { padding: 20px; position: relative; min-height: 140px; }
+.university-logo { position: absolute; top: 20px; right: 20px; width: 60px; opacity: 0.8; }
 .detail-row { margin-bottom: 12px; }
 .detail-label { font-weight: 600; color: var(--text-body); font-size: 0.95rem; display: block; margin-bottom: 4px; }
 .detail-value { font-weight: 700; color: var(--text-main); font-size: 1.1rem; }
-.score-text { color: var(--accent-color); font-weight: 800; }
 
-/* Warning Text */
 .warning-text { color: var(--text-body); font-size: 0.9rem; margin-bottom: 25px; line-height: 1.5; }
 .highlight-warn { color: var(--danger-color); font-weight: 700; }
 
-/* --- Final Area Styles --- */
+/* Final Area */
 .success-icon { font-size: 3.5rem; color: var(--success-color); margin-bottom: 20px; animation: popUp 0.8s ease; }
 .info-box { background: rgba(0, 122, 255, 0.1); border: 1px solid rgba(0, 122, 255, 0.2); border-radius: 16px; padding: 20px; margin-bottom: 25px; }
 .error-msg { color: var(--danger-color); background: #FFEBEB; padding: 12px; border-radius: 12px; font-size: 0.9rem; margin-top: 15px; display: none; font-weight: 600; border: 1px solid #FFCDCD; }
@@ -187,7 +154,6 @@ input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color
 
 footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-body); opacity: 0.8; text-align: center; width: 100%; padding: 0 10px; font-weight: 500; }
 
-/* Mobile Adjustments */
 @media (max-width: 480px) {
   .card-container { padding: 2rem 1.5rem; width: 92%; }
   h1 { font-size: 1.8rem; }
@@ -222,19 +188,15 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
 
             <div class="result-header">ประกาศผลการคัดเลือก SCU Chapter 3</div>
             <div class="result-title">ยินดีด้วย! คุณผ่านการคัดเลือก</div>
-            <div class="result-date" id="current-date">20 พ.ค. 68 เวลา 08.00.00 น.</div>
+            <div class="result-date" id="current-date"></div>
 
-            <div class="deadline-text">กรุณายืนยันสิทธิ์ภายใน</div>
+            <div class="deadline-text">กรุณายืนยันสิทธิ์ภายใน (30 ธ.ค. 68 เวลา 19:00 น.)</div>
+            
             <div class="countdown-container">
-                <div class="time-box"><span id="hours">23</span><span class="time-label">ชั่วโมง</span></div>
-                <div class="time-box"><span id="minutes">59</span><span class="time-label">นาที</span></div>
-                <div class="time-box"><span id="seconds">59</span><span class="time-label">วินาที</span></div>
+                <div class="time-box"><span id="hours">--</span><span class="time-label">ชั่วโมง</span></div>
+                <div class="time-box"><span id="minutes">--</span><span class="time-label">นาที</span></div>
+                <div class="time-box"><span id="seconds">--</span><span class="time-label">วินาที</span></div>
             </div>
-
-            <div class="hearts-container">
-                <i class="fas fa-heart"></i> <i class="fas fa-heart"></i> <i class="fas fa-heart"></i>
-            </div>
-            <div class="heart-text">สามารถตัดสินใจได้ 3 ครั้ง</div>
 
             <div class="official-result-box">
                 <div class="box-header">สถานะ: ผ่านการคัดเลือก (Selected)</div>
@@ -253,20 +215,16 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
                         <span class="detail-label">ตำแหน่ง (Position)</span>
                         <span class="detail-value" id="display-position">Position Name</span>
                     </div>
-                     <div class="detail-row" style="margin-top: 20px;">
-                        <span class="detail-label">คะแนนการสัมภาษณ์</span>
-                        <span class="detail-value score-text" id="display-score">95.50 / 100</span>
-                    </div>
                 </div>
             </div>
 
             <p class="warning-text">
                 ท่านสามารถ <span class="highlight-warn">ยืนยันสิทธิ์</span> เพื่อเข้าร่วมเป็นส่วนหนึ่งของทีม<br>
-                และเปลี่ยนแปลงการตัดสินใจได้อีกเพียง 2 ครั้ง
+                เมื่อกดยืนยันแล้วระบบจะบันทึกข้อมูลทันที
             </p>
             
             <button class="btn-primary" onclick="confirmRights()" style="background: linear-gradient(135deg, #27AE60 0%, #219150 100%);">
-                <i class="fas fa-heart" style="color: #fff;"></i> -1 ยืนยันสิทธิ์ (Confirm)
+                ยืนยันสิทธิ์ (Confirm)
             </button>
         </div>
 
@@ -292,57 +250,47 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
     <footer>© 2026 Strategic Connections Unlimited</footer>
 
 <script>
-    /* --- Database (เพิ่มคะแนน) --- */
+    // ----------------------------------------------------
+    // 1. ตั้งค่าการส่งข้อมูล (แก้ไขลิงก์ให้ถูกต้องแล้ว)
+    // ----------------------------------------------------
+    const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdogQOyZkyWFbtkJ5NZ-EgJJUF2t2VvtLoBH2x2d_cPbLYZDw/formResponse"; 
+    const ENTRY_NAME = "entry.190044036"; 
+    const ENTRY_CODE = "entry.475440260"; 
+
+    // ----------------------------------------------------
+    // 2. ตั้งค่าวันหมดเวลา
+    // ----------------------------------------------------
+    // สิ้นสุด: 30 ธ.ค. 2025 เวลา 19:00:00 (ระยะเวลา 48 ชม.)
+    const TARGET_DATE = new Date("2025-12-30T19:00:00").getTime(); 
+
+    // Database
     const database = {
-        "SCU001": { 
-            name: "N' AOF", 
-            team: "Business Development Team",
-            position: "Sponsor & Partner Relations",
-            score: "98.50"
-        },
-        "SCU002": { 
-            name: "Tanapat S.", 
-            team: "Creative Team",
-            position: "Graphic Designer",
-            score: "96.00"
-        },
-        "GUEST": { 
-            name: "Special Guest", 
-            team: "Management",
-            position: "V.I.P. Advisor",
-            score: "100.00"
-        }
+        "SCU001": { name: "N' AOF", team: "Business Development Team", position: "Sponsor & Partner Relations" },
+        "SCU002": { name: "Tanapat S.", team: "Creative Team", position: "Graphic Designer" },
+        "GUEST": { name: "Special Guest", team: "Management", position: "V.I.P. Advisor" }
     };
 
-    /* --- Logic --- */
     function checkCode() {
         const input = document.getElementById('secret-code');
         const errorMsg = document.getElementById('error-msg');
-        const searchArea = document.getElementById('search-area');
-        const resultArea = document.getElementById('result-area');
         
         if(!input) return;
         const code = input.value.trim().toUpperCase();
 
         if (database[code]) {
-            // Populate Data
             document.getElementById('display-name').innerText = database[code].name;
             document.getElementById('display-team').innerText = database[code].team;
             document.getElementById('display-position').innerText = database[code].position;
-            document.getElementById('display-score').innerText = database[code].score + " / 100";
             
-            // Set Current Date
+            // Show Current Date
             const now = new Date();
-            const dateStr = now.toLocaleDateString('th-TH', { year: '2-digit', month: 'short', day: 'numeric' });
-            const timeStr = now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
-            document.getElementById('current-date').innerText = `${dateStr} เวลา ${timeStr} น.`;
+            document.getElementById('current-date').innerText = now.toLocaleDateString('th-TH', { year: '2-digit', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' }) + " น.";
 
-            searchArea.style.display = 'none';
-            resultArea.style.display = 'block';
+            document.getElementById('search-area').style.display = 'none';
+            document.getElementById('result-area').style.display = 'block';
 
             fireMegaFireworks();
-            startCountdown(); // เริ่มนับถอยหลัง
-
+            startCountdown(); 
         } else {
             errorMsg.style.display = 'block';
             document.getElementById('main-card').classList.add('shake');
@@ -351,58 +299,66 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
     }
 
     function confirmRights() {
+        // 1. ส่งข้อมูลไป Google Sheets
+        const name = document.getElementById('display-name').innerText;
+        const code = document.getElementById('secret-code').value.trim().toUpperCase();
+
+        const formData = new FormData();
+        formData.append(ENTRY_NAME, name);
+        formData.append(ENTRY_CODE, code);
+        
+        fetch(GOOGLE_FORM_URL, {
+            method: "POST",
+            mode: "no-cors", 
+            body: formData
+        }).then(() => {
+            console.log("Data sent");
+        }).catch(e => console.error("Error sending data", e));
+
+        // 2. เปลี่ยนหน้า
         document.getElementById('result-area').style.display = 'none';
         document.getElementById('final-area').style.display = 'block';
         fireNormalFireworks();
     }
 
-    // ⏳ ฟังก์ชันนับถอยหลัง (สมมติว่าเหลือ 24 ชม.)
     function startCountdown() {
-        let hours = 23, minutes = 59, seconds = 59;
-        const hoursEl = document.getElementById('hours');
-        const minutesEl = document.getElementById('minutes');
-        const secondsEl = document.getElementById('seconds');
-
         const timer = setInterval(() => {
-            if (seconds > 0) {
-                seconds--;
-            } else {
-                if (minutes > 0) {
-                    minutes--;
-                    seconds = 59;
-                } else {
-                    if (hours > 0) {
-                        hours--;
-                        minutes = 59;
-                        seconds = 59;
-                    } else {
-                        clearInterval(timer); // หมดเวลา
-                    }
-                }
+            const now = new Date().getTime();
+            const distance = TARGET_DATE - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
             }
-            hoursEl.innerText = String(hours).padStart(2, '0');
-            minutesEl.innerText = String(minutes).padStart(2, '0');
-            secondsEl.innerText = String(seconds).padStart(2, '0');
+
+            // คำนวณชั่วโมงแบบไม่ตัดเศษวัน (แสดง 48 ชม.)
+            const hours = Math.floor(distance / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
         }, 1000);
     }
 
-    // 🚀 ฟังก์ชัน "มหาพลุ"
     function fireMegaFireworks() {
         var duration = 7000; var animationEnd = Date.now() + duration;
         var defaults = { startVelocity: 40, spread: 360, ticks: 100, zIndex: 999 };
         var interval = setInterval(function() {
             var timeLeft = animationEnd - Date.now();
             if (timeLeft <= 0) return clearInterval(interval);
-            var particleCount = 900 * (timeLeft / duration);
+            var particleCount = 150 * (timeLeft / duration);
             confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#007AFF', '#A4D8F9', '#FFD700'] }));
             confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#FFD700', '#27AE60', '#ffffff'] }));
             if(Math.random() < 0.4) { confetti({ particleCount: 50, spread: 120, origin: { y: 0.6 }, colors: ['#FF4500', '#FFD700', '#FFFFFF'], scalar: 1.2 }); }
         }, 150);
     }
-
     function fireNormalFireworks() { confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } }); }
     function randomInRange(min, max) { return Math.random() * (max - min) + min; }
-
     document.addEventListener('DOMContentLoaded', () => {
         const inputField = document.getElementById("secret-code");
         if(inputField) {
@@ -415,4 +371,3 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
 
 </body>
 </html>
-
