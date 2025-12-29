@@ -3,18 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Recruitment Result - SCU Chapter 3</title>
+<title>Volunteer Recruitment Result - SCU Chapter 3</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
-/* --- 1. Variables --- */
 :root {
   --sky-top: #4A90E2;
   --sky-bottom: #A4D8F9;
@@ -30,8 +27,8 @@
   --shadow-card: 0 20px 50px rgba(16, 42, 67, 0.25);
 }
 
-/* --- 2. Base Styles --- */
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: 'Inter', 'Sarabun', sans-serif;
@@ -56,12 +53,11 @@ body::after {
 .city-bg { position: fixed; bottom: 0; left: 0; width: 100%; height: 40vh; z-index: -1; pointer-events: none; opacity: 0.4; }
 .city-bg svg { width: 100%; height: 100%; display: block; fill: #FFFFFF; }
 
-/* --- 3. Main Card --- */
 .card-container {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(25px);
-  width: 95% ; 
+  width: 95%; 
   max-width: 550px;
   border-radius: 24px;
   padding: 2.5rem 2rem;
@@ -73,12 +69,10 @@ body::after {
   margin: 20px 0;
 }
 
-/* Typography & Elements */
 .logo-main { width: 90px; margin-bottom: 20px; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1)); }
 h1 { margin: 0 0 10px; font-size: 2rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; line-height: 1.2; }
 p.desc { color: var(--text-body); font-size: 1rem; margin-bottom: 40px; line-height: 1.6; }
 
-/* Input */
 .input-group { position: relative; margin-bottom: 25px; }
 input[type="text"] {
   width: 100%; padding: 18px 25px; font-size: 1.2rem;
@@ -89,7 +83,6 @@ input[type="text"] {
 }
 input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color); }
 
-/* Button Main */
 .btn-primary {
   background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-dark) 100%);
   color: white; border: none; padding: 16px 30px; font-size: 1.1rem; font-weight: 700;
@@ -100,7 +93,6 @@ input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0, 122, 255, 0.35); }
 .btn-primary:active { transform: scale(0.98); }
 
-/* Button Celebrate Small */
 .btn-celebrate-small {
   position: absolute; top: 15px; right: 15px; width: 40px; height: 40px;
   border-radius: 50%; background: rgba(255, 255, 255, 0.6);
@@ -110,7 +102,6 @@ input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color
 }
 .btn-celebrate-small:hover { transform: scale(1.15) rotate(15deg); background: #FFFFFF; }
 
-/* --- 4. Result Styling --- */
 #result-area, #final-area { display: none; animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
 .result-header { color: var(--text-body); font-size: 1.1rem; font-weight: 600; margin-bottom: 5px; }
@@ -144,13 +135,48 @@ input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color
 .info-box { background: rgba(0, 122, 255, 0.1); border: 1px solid rgba(0, 122, 255, 0.2); border-radius: 16px; padding: 20px; margin-bottom: 25px; }
 .error-msg { color: var(--danger-color); background: #FFEBEB; padding: 12px; border-radius: 12px; font-size: 0.9rem; margin-top: 15px; display: none; font-weight: 600; border: 1px solid #FFCDCD; }
 
+.waive-text { margin-top: 18px; font-size: 0.85rem; color: var(--text-body); opacity: 0.8; font-weight: 500; }
+
+.social-section { 
+    margin-top: 30px; 
+    border-top: 1px solid rgba(0,0,0,0.05); 
+    padding-top: 20px; 
+}
+.social-label { 
+    font-size: 0.85rem; 
+    color: var(--text-body); 
+    margin-bottom: 12px; 
+    display: block; 
+    font-weight: 500;
+}
+.social-icons-container { 
+    display: flex; 
+    justify-content: center; 
+    gap: 25px; 
+}
+.social-link-item { 
+    color: #B0B7C3; 
+    font-size: 1.5rem; 
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex; align-items: center; justify-content: center;
+}
+.social-link-item:hover { 
+    transform: translateY(-2px); 
+    color: var(--accent-color); 
+}
+
+.social-link-item:hover.fb { color: #1877F2; }
+.social-link-item:hover.ig { color: #E1306C; }
+.social-link-item:hover.line { color: #06C755; }
+
+
 @keyframes popUp { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 @keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); } 20%, 40%, 60%, 80% { transform: translateX(6px); } }
 .shake { animation: shake 0.4s; }
 
 footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-body); opacity: 0.8; text-align: center; width: 100%; padding: 0 10px; font-weight: 500; }
 
-/* ✅ Mobile Adjustments (Smaller for Android) */
 @media (max-width: 480px) {
   .card-container { padding : 1.5rem 1rem ; width : 92% ; margin : 10px 0 ; }
   h1 { font-size : 1.5rem ; }
@@ -192,7 +218,7 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
             <div class="result-title">ยินดีด้วย! คุณผ่านการคัดเลือก</div>
             <div class="result-date" id="current-date"></div>
 
-            <div class="deadline-text">กรุณายืนยันสิทธิ์ภายใน (30 ธ.ค. 68 เวลา 19:30 น.)</div>
+            <div class="deadline-text">กรุณายืนยันสิทธิ์ภายใน (30 ธ.ค. 68 เวลา 19 : 30 น.)</div>
             
             <div class="countdown-container">
                 <div class="time-box"><span id="hours">--</span><span class="time-label">ชั่วโมง</span></div>
@@ -228,6 +254,10 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
             <button class="btn-primary" onclick="confirmRights()" style="background: linear-gradient(135deg, #27AE60 0%, #219150 100%);">
                 ยืนยันสิทธิ์ (Confirm)
             </button>
+
+            <p class="waive-text">
+                ( หากต้องการสละสิทธิ์ กรุณาแจ้งพี่ผิงในไลน์ )
+            </p>
         </div>
 
         <div id="final-area">
@@ -244,7 +274,22 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
                     ผ่านทางอีเมลในช่วง <strong>ต้นเดือนมกราคม</strong>
                 </p>
             </div>
-            <p style="font-size:0.85rem; color:#888;">ปิดหน้านี้ได้เลยครับ</p>
+
+            <div class="social-section">
+                <span class="social-label">ระหว่างรอ... สามารถทำความรู้จัก SCU เพิ่มเติมได้ที่</span>
+                <div class="social-icons-container">
+                    <a href="https://www.facebook.com/profile.php?id=61566546757537&locale=th_TH" target="_blank" class="social-link-item fb">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/scu.connections?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-link-item ig">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://line.me/ti/g2/6BUga2rcQZGGkFgZj9NqS31P88JGXhCGYdVB1g?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="social-link-item line">
+                        <i class="fab fa-line"></i>
+                    </a>
+                </div>
+            </div>
+            
         </div>
 
     </div>
@@ -252,24 +297,30 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
     <footer>© 2026 Strategic Connections Unlimited</footer>
 
 <script>
-    // ----------------------------------------------------
-    // 1. ตั้งค่าการส่งข้อมูล (Google Form)
-    // ----------------------------------------------------
+    console.log(`%c
+   _____  _____  _    _ 
+  / ____|/ ____|| |  | |
+ | (___ | |     | |  | |
+  \\___ \\| |     | |  | |
+  ____) | |____ | |__| |
+ |_____/ \\_____| \\____/ 
+    `, "color: #007AFF; font-weight: bold;");
+    
+    console.log("%cWelcome to the DevTools side! 🛠️", "font-size: 16px; color: #102A43; font-weight: bold; margin-top: 10px;");
+    console.log("%cYou're looking at the code? That's the first step of a great Engineer & Designer.", "font-size: 12px; color: #486581;");
+    console.log("%cSee you in the future. 🚀", "color: #27AE60; font-weight: bold; margin-bottom: 10px;");
+    console.log("%c( SCU Chapter 3 : Recruitment )", "color: #ccc; font-size: 10px;");
+
     const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdogQOyZkyWFbtkJ5NZ-EgJJUF2t2VvtLoBH2x2d_cPbLYZDw/formResponse"; 
     const ENTRY_NAME = "entry.190044036"; 
     const ENTRY_CODE = "entry.475440260"; 
 
-    // ----------------------------------------------------
-    // 2. ตั้งค่าวันหมดเวลา
-    // ----------------------------------------------------
-    // สิ้นสุด : 30 ธ.ค. 2025 เวลา 19 : 30 : 00
     const TARGET_DATE = new Date("2025-12-30T19:30:00").getTime(); 
 
-    // Database
     const database = {
-        "SCU001": { name: "N' AOF", team: "Business Development Team", position: "Sponsor & Partner Relations" },
+        "SCU001": { name: "N' Aof", team: "Business Development Team", position: "Sponsor & Partner Relations" },
         "SCU002": { name: "🫵", team: "ทำไรครับ", position: "🫵" },
-        "GUEST": { name: "Special Guest", team: "Management", position: "V.I.P. Advisor" }
+        "SCU002CP": { name: "N' ชมพู่", team: "Academic Team", position: "Deck Designer" }
     };
 
     function checkCode() {
@@ -303,7 +354,6 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
         const name = document.getElementById('display-name').innerText ;
         const code = document.getElementById('secret-code').value.trim().toUpperCase() ;
 
-        // ใช้ URLSearchParams เพื่อความเสถียรสูงสุดบน Android
         const params = new URLSearchParams() ;
         params.append(ENTRY_NAME, name) ;
         params.append(ENTRY_CODE, code) ;
@@ -314,8 +364,8 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: params.toString()
         }).then(() => {
-            console.log("Data submission triggered");
-        }).catch(e => console.error("Submission Error :", e));
+            console.log("Status: Confirmed");
+        }).catch(e => console.error("Error", e));
 
         document.getElementById('result-area').style.display = 'none';
         document.getElementById('final-area').style.display = 'block';
@@ -335,7 +385,6 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
                 return;
             }
 
-            // แสดงชั่วโมงรวมทั้งหมด (เช่น 48 ชั่วโมง)
             const hours = Math.floor(distance / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
