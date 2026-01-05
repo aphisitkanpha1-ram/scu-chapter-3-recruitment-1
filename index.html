@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Volunteer Recruitment Result - SCU Chapter 3</title>
+<title>Volunteer Recruitment Result V2.0 - SCU Chapter 3</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,17 +104,10 @@ input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color
 
 #result-area, #final-area { display: none; animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
-.result-header { color: var(--text-body); font-size: 1.1rem; font-weight: 600; margin-bottom: 5px; }
 .result-title { color: var(--accent-color); font-size: 1.8rem; font-weight: 800; margin-bottom: 15px; }
 .result-date { color: var(--text-body); font-size: 0.95rem; margin-bottom: 20px; font-weight: 500; }
 
-.deadline-text { color: var(--danger-color); font-weight: 700; margin-bottom: 10px; }
-.countdown-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
-.time-box {
-    background: var(--accent-color); color: white;
-    padding: 8px 12px; border-radius: 8px; font-weight: 700; font-size: 1.2rem; min-width: 50px;
-}
-.time-label { display: block; font-size: 0.7rem; font-weight: 400; margin-top: 4px; }
+.deadline-text { color: var(--danger-color); font-weight: 700; margin-bottom: 20px; font-size: 1.1rem; }
 
 .official-result-box {
     background: #FFFFFF; border: 2px solid var(--accent-color);
@@ -139,7 +132,7 @@ input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color
 
 .social-section { 
     margin-top: 30px; 
-    border-top: 1px solid rgba(0,0,0,0.05); 
+    border-top: 1px solid rgba(0, 0, 0, 0.05); 
     padding-top: 20px; 
 }
 .social-label { 
@@ -170,6 +163,18 @@ input[type="text"]:focus { background: #FFFFFF; border-color: var(--accent-color
 .social-link-item:hover.ig { color: #E1306C; }
 .social-link-item:hover.line { color: #06C755; }
 
+.qr-container {
+    text-align: center;
+    margin: 15px 0;
+}
+.qr-image {
+    width: 160px;
+    height: 160px;
+    border-radius: 12px;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
 
 @keyframes popUp { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 @keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); } 20%, 40%, 60%, 80% { transform: translateX(6px); } }
@@ -182,13 +187,10 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
   h1 { font-size : 1.5rem ; }
   p.desc { font-size : 0.9rem ; margin-bottom : 25px ; }
   .result-title { font-size : 1.35rem ; }
-  .result-header { font-size : 0.95rem ; }
-  .time-box { min-width : 45px ; padding : 6px 8px ; font-size : 1rem ; }
   .box-content { padding : 15px ; min-height : 120px ; }
   .university-logo { width : 50px ; top : 15px ; right : 15px ; }
   .detail-label { font-size : 0.85rem ; }
   .detail-value { font-size : 0.95rem ; }
-  .member-name { font-size : 2rem ; }
   .btn-primary { padding : 14px 20px ; font-size : 1rem ; }
 }
 </style>
@@ -207,25 +209,19 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
             <p class="desc">กรุณากรอก Secret Code เพื่อตรวจสอบผลการคัดเลือกอาสาสมัคร</p>
             <div class="input-group">
                 <input type="text" id="secret-code" placeholder="Secret Code" autocomplete="off">
-                <div class="error-msg" id="error-msg">⚠️ Secret Code ไม่ถูกต้อง กรุณาลองใหม่</div>
+                <div class="error-msg" id="error-msg">⚠️ Secret Code ไม่ถูกต้อง กรุณาลองใหม่ </div>
             </div>
             <button class="btn-primary" onclick="checkCode()">Check Result</button>
         </div>
 
         <div id="result-area">
-            <button class="btn-celebrate-small" onclick="fireMegaFireworks()" title="จุดพลุฉลองเลย!">🎉</button>
+            <button class="btn-celebrate-small" onclick="fireMegaFireworks()" title="จุดพลุฉลองเลย !">🎉</button>
 
-            <div class="result-title">ยินดีด้วย! คุณผ่านการคัดเลือก</div>
+            <div class="result-title">ยินดีด้วย ! คุณผ่านการคัดเลือก</div>
             <div class="result-date" id="current-date"></div>
 
-            <div class="deadline-text">กรุณายืนยันสิทธิ์ภายใน (30 ธ.ค. 68 เวลา 19 : 30 น.)</div>
+            <div class="deadline-text">กรุณายืนยันสิทธิ์ ภายในวันที่ 6 มกราคม เวลา 18 : 00 น.</div>
             
-            <div class="countdown-container">
-                <div class="time-box"><span id="hours">--</span><span class="time-label">ชั่วโมง</span></div>
-                <div class="time-box"><span id="minutes">--</span><span class="time-label">นาที</span></div>
-                <div class="time-box"><span id="seconds">--</span><span class="time-label">วินาที</span></div>
-            </div>
-
             <div class="official-result-box">
                 <div class="box-header">สถานะ : ผ่านการคัดเลือก (Selected)</div>
                 <div class="box-content">
@@ -256,7 +252,7 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
             </button>
 
             <p class="waive-text">
-                ( หากต้องการสละสิทธิ์ กรุณาแจ้งพี่ผิงในไลน์ )
+                - หากต้องการสละสิทธิ์ กรุณาแจ้งคุณผิงหรือตอบกลับทางอีเมลฉบับนี้ -
             </p>
         </div>
 
@@ -268,15 +264,23 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
             </p>
             
             <div class="info-box">
-                <strong style="color:var(--accent-color); display:block; margin-bottom:8px;">📅 ขั้นตอนถัดไป</strong>
-                <p style="font-size:0.95rem; margin:0; color:var(--text-body); line-height:1.5;">
-                    โปรดรอรับ <strong>ลิงก์เข้ากลุ่ม LINE</strong><br>
-                    ผ่านทางอีเมลในช่วง <strong>ต้นเดือนมกราคม</strong>
+                <strong style="color:var(--accent-color); display:block; margin-bottom:15px; font-size:1.1rem;">📱 เข้าร่วมกลุ่มไลน์ SCU Chapter 3</strong>
+                
+                <div class="qr-container">
+                    <img src="SCU3.LINE.GROUP.jpg" class="qr-image" alt="QR Code">
+                </div>
+
+                <a href="https://line.me/R/ti/g/kaq6YX88qJ" target="_blank" class="btn-primary" style="margin-bottom: 5px;">
+                    <i class="fab fa-line"></i> แตะเพื่อเข้ากลุ่มไลน์
+                </a>
+                
+                <p style="font-size:0.85rem; margin-top:15px; color:var(--text-body); opacity:0.8;">
+                    สแกน QR Code หรือกดปุ่มด้านบน<br>เพื่อเข้าร่วมกลุ่ม
                 </p>
             </div>
 
             <div class="social-section">
-                <span class="social-label">ระหว่างรอ... สามารถทำความรู้จัก SCU เพิ่มเติมได้ที่</span>
+                <span class="social-label">ทำความรู้จัก SCU เพิ่มเติมได้ที่</span>
                 <div class="social-icons-container">
                     <a href="https://www.facebook.com/profile.php?id=61566546757537&locale=th_TH" target="_blank" class="social-link-item fb">
                         <i class="fab fa-facebook"></i>
@@ -294,33 +298,43 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
 
     </div>
 
-    <footer>© 2026 Strategic Connections Unlimited</footer>
+    <footer>© 2026 Strategic Connections Unlimited (SCU). All rights reserved.</footer>
 
 <script>
-    console.log(`%c
-   _____  _____  _    _ 
-  / ____|/ ____|| |  | |
- | (___ | |     | |  | |
-  \\___ \\| |     | |  | |
-  ____) | |____ | |__| |
- |_____/ \\_____| \\____/ 
-    `, "color: #007AFF; font-weight: bold;");
-    
-    console.log("%cWelcome to the DevTools side! 🛠️", "font-size: 16px; color: #102A43; font-weight: bold; margin-top: 10px;");
-    console.log("%cYou're looking at the code? That's the first step of a great Engineer & Designer.", "font-size: 12px; color: #486581;");
-    console.log("%cSee you in the future. 🚀", "color: #27AE60; font-weight: bold; margin-bottom: 10px;");
-    console.log("%c( SCU Chapter 3 : Recruitment )", "color: #ccc; font-size: 10px;");
+    // --- SECURITY : PROTECTION SCRIPT (ป้องกันการดู Source Code) ---
+    // 1. ป้องกันคลิกขวา (Right Click)
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // 2. ป้องกันคีย์ลัด (F12, Ctrl+Shift+I, Ctrl+U, etc.)
+    document.onkeydown = function(e) {
+        if(e.keyCode == 123) { return false; } // F12
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; } // Inspect
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; } // Console
+        if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; } // View Source
+    }
+
+    // 3. Debugger Trap (ทำให้หน้าเว็บ Paused ทันทีถ้าฝืนเปิด DevTools)
+    // หมายเหตุ: โค้ดนี้จะทำงานวนลูปทุก 0.2 วินาที
+    setInterval(() => { debugger; }, 200);
+    // --- END SECURITY ---
+
+    console.log(`%c SCU Chapter 3 : Recruitment `, "color: #007AFF; font-weight: bold;");
 
     const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdogQOyZkyWFbtkJ5NZ-EgJJUF2t2VvtLoBH2x2d_cPbLYZDw/formResponse"; 
     const ENTRY_NAME = "entry.190044036"; 
     const ENTRY_CODE = "entry.475440260"; 
 
-    const TARGET_DATE = new Date("2025-12-30T19:30:00").getTime(); 
-
     const database = {
+        "SCU3-PLENG": { name: "N' Pleng", team: "Project Management Team", position: "Vision & Experience" },
+        "SCU3-PING": { name: "N' Ping", team: "Project Management Team", position: "People & Culture" },
+        "SCU3-000": { name: "N' Sydney", team: "Marketing Team", position: "Public-Facing Content Creator" },
         "SCU001": { name: "N' Aof", team: "Business Development Team", position: "Sponsor & Partner Relations" },
-        "SCU002": { name: "🫵", team: "ทำไรครับ", position: "🫵" },
-        "SCU002CP": { name: "N' ชมพู่", team: "Academic Team", position: "Deck Designer" }
+        "SCU002": { name: "🫵", team: "ทำไรครับ?", position: "🫵" },
+        "SCU002CP": { name: "N' ชมพู่", team: "Academic Team", position: "Deck Designer" },
+        "SCU3-B18W7": { name: "N' Bow", team: "Marketing Team", position: "Content Strategist" },
+        "SCU3-O37N2": { name: "Owen", team: "Business Development Team", position: "Sponsor & Partner Relations" },
+        "SCU3-M25I9": { name: "Modtanoi", team: "Business Development Team", position: "Business Documentation" },
+        "SCU3-M64K8": { name: "Milk", team: "Academic Team", position: "Academic Assistant" }
     };
 
     function checkCode() {
@@ -336,13 +350,12 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
             document.getElementById('display-position').innerText = database[code].position;
             
             const now = new Date();
-            document.getElementById('current-date').innerText = now.toLocaleDateString('th-TH', { year: '2-digit', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' }) + " น.";
+            document.getElementById('current-date').innerText = now.toLocaleDateString('th-TH', { year: '2-digit', month: 'short', day: 'numeric', hour: '2-digit', minute : '2-digit' }) + " น.";
 
             document.getElementById('search-area').style.display = 'none';
             document.getElementById('result-area').style.display = 'block';
 
             fireMegaFireworks();
-            startCountdown(); 
         } else {
             errorMsg.style.display = 'block';
             document.getElementById('main-card').classList.add('shake');
@@ -361,38 +374,15 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
         fetch(GOOGLE_FORM_URL, {
             method: "POST",
             mode: "no-cors", 
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            headers: { "Content-Type" : "application/x-www-form-urlencoded" },
             body: params.toString()
         }).then(() => {
-            console.log("Status: Confirmed");
+            console.log("Status : Confirmed");
         }).catch(e => console.error("Error", e));
 
         document.getElementById('result-area').style.display = 'none';
         document.getElementById('final-area').style.display = 'block';
         fireNormalFireworks();
-    }
-
-    function startCountdown() {
-        const timer = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = TARGET_DATE - now;
-
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById('hours').innerText = "00";
-                document.getElementById('minutes').innerText = "00";
-                document.getElementById('seconds').innerText = "00";
-                return;
-            }
-
-            const hours = Math.floor(distance / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-        }, 1000);
     }
 
     function fireMegaFireworks() {
@@ -423,4 +413,3 @@ footer { position: fixed; bottom: 10px; font-size: 0.75rem; color: var(--text-bo
 
 </body>
 </html>
-
